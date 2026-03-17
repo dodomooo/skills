@@ -1,0 +1,19 @@
+{
+  "name": "dodomooo-skills",
+  "description": "Claude Code plugin for skills development",
+  "author": {
+    "name": "dodomooo",
+    "url": "https://github.com/dodomooo"
+  },
+  "homepage": "https://github.com/dodomooo/skills",
+  "repository": "https://github.com/dodomooo/skills",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "skills"
+  ],
+  "commands": "./commands",
+  "agents": "./agents",
+  "skills": "./skills",
+  "hooks": "./hooks"
+}
