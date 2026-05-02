@@ -1,0 +1,81 @@
+version: 1
+
+# ---------------------------------------------------------------------------
+# 前页检测：用于识别文档开头的封面、审批表、修订记录、目录等内容。
+# 每个关键词列表在运行时拼接为正则交替式：(词1|词2|...)。
+# ---------------------------------------------------------------------------
+front_page:
+  # 封面关键词 — 匹配到任意一个即视为前页内容（不区分大小写）
+  cover_keywords:
+    - 内部文档
+    - 不得复制
+    - 有限公司
+    - 科技股份
+    - 版权所有
+    - 保密等级
+    - 密级
+    - CONFIDENTIAL
+
+  # 审批表关键词 — 仅在短行（长度 < keyword_line_max_length）中匹配
+  approval_keywords:
+    - 拟制
+    - 审核
+    - 批准
+    - 审批
+    - 日期
+
+  # 修订记录关键词 — 同样受行长度限制
+  revision_keywords:
+    - 修订记录
+    - 变更记录
+    - 版本号
+    - 修订版本
+
+  # 目录标识词（整行精确匹配）
+  toc_word: 目录
+
+  # 审批/修订关键词仅在行长度小于此值时生效，
+  # 避免误匹配正文中偶然包含这些词的长段落
+  keyword_line_max_length: 100
+
+  # 连续非前页文本行数达到此阈值时，判定前页区域结束
+  consecutive_text_threshold: 2
+
+# ---------------------------------------------------------------------------
+# 噪音清洗：控制各正则清洗规则的开关。
+# 正则模式和替换逻辑保留在代码中，此处仅控制是否执行。
+# ---------------------------------------------------------------------------
+cleanup:
+  remove_images: true
+  remove_empty_anchors: true
+  remove_empty_links: true
+  remove_empty_html_comments: true
+  remove_control_characters: true
+  remove_trailing_backslash: true
+  remove_fullwidth_indent: true
+  remove_html_raw_blocks: true
+  unescape_xml_entities: true
+  unescape_escaped_parens: true
+  remove_pandoc_annotations: true
+  unescape_escaped_brackets: true
+  compress_blank_lines: true
+
+  # Pandoc span 标注类型 — 剥除标注保留内容，如 [文字]{.mark} → 文字
+  pandoc_annotation_types:
+    - mark
+    - underline
+    - smallcaps
+    - strikeout
+
+  # 空行压缩：连续空行数 >= 此值时压缩为 2 行（即保留一个空行）
+  blank_line_threshold: 3
+
+# ---------------------------------------------------------------------------
+# 标题处理：层级下移和上限
+# ---------------------------------------------------------------------------
+heading:
+  # 标题层级下移量：1 表示 H1→H2, H2→H3 等。设为 0 则不下移。
+  level_shift: 1
+
+  # Markdown ATX 标题最大层级（1-6）
+  max_level: 6
