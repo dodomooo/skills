@@ -1,0 +1,8 @@
+{
+  "_comment": "实际产物会按 skill 名称自动创建子目录，如 ./skill-refine-output/csv-converter/。这样不同 Skill 的产物互不覆盖。",
+  "output_dir": "./skill-refine-output/",
+  "max_iterations": 5,
+  "no_improvement_limit": 3,
+  "pass_rate_drop": 0.2,
+  "pass_rate_tolerance": 0.05
+}

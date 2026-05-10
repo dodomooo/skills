@@ -1,0 +1,29 @@
+{
+  "skill_name": "skill-self-refine",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我创建一个处理 CSV 格式转换的 Skill，能支持 CSV 转 JSON、CSV 转 Excel，放在 ~/skills/csv-converter/",
+      "expected_output": "调用 skill-creator 完成创建，产物验证通过，首次运行跳过回归检查，进入人工门禁",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "优化 ~/skills/csv-converter/ 这个 Skill，评测通过率太低了",
+      "expected_output": "备份原 Skill，调用 skill-creator 改进，回归检查通过或阻止，展示 diff 和 benchmark 对比",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "回归检查 ~/skills/csv-converter/，看看最近改动有没有引入退化",
+      "expected_output": "运行评测，回归守卫对比 golden_set，输出结果报告，检测到回归时阻止发布",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "帮我写一个 Python 脚本来处理日志文件",
+      "expected_output": "正确识别为非 Skill 请求，拒绝并说明 skill-self-refine 的适用范围",
+      "files": []
+    }
+  ]
+}
